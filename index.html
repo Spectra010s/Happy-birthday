@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Happy Birthday Dad</title>
+    <title>Happy Birthday Dimples</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="src/css/index.css" />
     <link type="text/css" rel="stylesheet" href="./src/css/default.css" />
@@ -41,7 +41,7 @@
     <div class="first--slide">
       <div class="slide--content">
         <h1>hello</h1>
-        <h2>Dear Dad</h2>
+        <h2>Dimples</h2>
         <span class="top"></span>
         <span class="right"></span>
         <span class="bottom"></span>
@@ -2016,7 +2016,8 @@
           <span>h</span><span>a</span><span>p</span><span>p</span
           ><span>y</span> <span>b</span><span>i</span><span>r</span
           ><span>t</span><span>h</span><span>d</span><span>a</span
-          ><span>y</span> <span>d</span>a<span>d</span> <span>🎉</span
+          ><span>y</span> <span>d</span>i<span>m</span><span>p</span
+          ><span>l</span><span>e</span><span>s</span> <span>🎉</span
           ><span>🎉</span>
         </h1>
       </div>
@@ -2043,22 +2044,18 @@
       <div id="wrap">
         <div id="text">
           <div id="code">
-            <span class="say">COURTESY: CHILDREN</span><br />
-            <span class="say">Dear Dad 💞</span><br />
+            <span class="say">COURTESY: Tayo</span><br />
+            <span class="say">Dimples</span><br />
             <span class="say">Happy Birthday 🎈</span><br />
             <span classs="say"
-              >We pray this year brings peace, wisdom, and a heart filled with
+              >I pray this year brings peace, wisdom, and a heart filled with
               love</span
             ><br />
-            <span class="say">You are the best father 🍀</span><br />
-            <span class="say">Thank you for everything 💕</span><br />
-            <span class="say">We love you so much ❤️</span><br />
-            <span class="say">You make our family complete 🥺 ❤️</span><br />
-            <span class="say"
-              >Wishing you joy and a long meaningful life and a great bond with
-              your wife</span
+            <span class="say">Hope you have a great year ahead </span><br />
+            <span class="say">sorry this is late</span><br />
+            <span class="say">Wishing you joy and a long meaningful life</span
             ><br />
-            <span class="say">Have an amazing birthday! ❤️😘</span><br />
+            <span class="say">Once Again Happy Birthday!❤️</span><br />
           </div>
         </div>
         <div id="clock-box">
@@ -2075,15 +2072,17 @@
       document.addEventListener(
         "DOMContentLoaded",
         function startBirthdaySurprise() {
-          const startButton = document.getElementById("start-button");
+          const startButton = document.querySelector(".start-button");
           const audio = document.getElementById("myAudio");
 
-          startButton.addEventListener("click", function () {
-            playaudio();
-            document.querySelector(".first--slide").classList.add("started");
-            startButton.classList.add("hidden");
-            startSlideTransitions();
-          });
+          if (startButton) {
+            startButton.addEventListener("click", function () {
+              playAudio();
+              document.querySelector(".first--slide").classList.add("started");
+              startButton.classList.add("hidden");
+              startSlideTransitions();
+            });
+          }
         }
       );
 
@@ -2109,22 +2108,13 @@
         canvas.attr("width", width);
         canvas.attr("height", height);
 
-        // Ensure canvas maintains proper dimensions on mobile
-        if (window.innerWidth <= 768) {
-          var mobileWidth = Math.min(width, window.innerWidth - 20);
-          var mobileHeight = (mobileWidth * height) / width;
-          canvas.attr("width", mobileWidth);
-          canvas.attr("height", mobileHeight);
-          width = mobileWidth;
-          height = mobileHeight;
-        }
+        // Keep original canvas dimensions for proper positioning
 
         var opts = {
           seed: {
-            x: width / 2,
-            y: window.innerWidth <= 768 ? height * 0.3 : height / 2, // Position seed higher on mobile
+            x: width / 2 - 20,
             color: "rgb(190, 26, 37)",
-            scale: window.innerWidth <= 768 ? 1.5 : 2,
+            scale: 2,
           },
           branch: [
             [
@@ -2205,8 +2195,8 @@
         var foot = tree.footer;
         var hold = 1;
 
-        // Draw the seed immediately so it's visible on mobile
-        seed.draw();
+        // Make seed globally accessible
+        window.treeSeed = seed;
 
         // Debug: Log seed position for mobile debugging
         console.log("Seed position:", seed.heart.point.x, seed.heart.point.y);
@@ -2338,6 +2328,10 @@
       })();
       setTimeout(function () {
         lastCanvas.setAttribute("style", "display:block");
+        // Draw the seed when the main div becomes visible
+        if (window.treeSeed) {
+          window.treeSeed.draw();
+        }
       }, 17200);
     </script>
   </body>
